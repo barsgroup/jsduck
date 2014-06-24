@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require "jsduck/util/singleton"
 require "jsduck/js/ext_define"
 require "jsduck/js/method"

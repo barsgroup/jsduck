@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require 'jsduck/logger'
 require 'jsduck/util/io'
 require 'jsduck/tag_registry'

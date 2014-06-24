@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require 'jsduck/doc/standard_tag_parser'
 require 'jsduck/logger'
 
@@ -38,7 +41,7 @@ module JsDuck
       def ident_chain
         @input.scan(@ident_chain_pattern)
       end
-      
+
       def ident_chain_generic(pattern)
         @input.scan(pattern)
       end

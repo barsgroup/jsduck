@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 require "jsduck/tag/tag"
 require "jsduck/doc/subproperties"
 require "jsduck/render/subproperties"
