@@ -12,7 +12,7 @@ module JsDuck
     def self.short(name)
       parts = name.split(/\./)
       short = parts.pop
-      while parts.length > 1 && parts.last =~ /^[A-Z]/
+      while parts.length > 1 && parts.last =~ /^[\p{Word}]/
         short = parts.pop + "." + short
       end
       short

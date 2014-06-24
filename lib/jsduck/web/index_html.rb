@@ -36,7 +36,19 @@ module JsDuck
           "{title}" => @opts.title,
           "{mobile_redirect}" => @opts.seo ? include_script(@opts.template+"/mobile-redirect.js") : "",
           "{header}" => header,
-          "{footer}" => footer,
+          "{footer}" => "<div id='footer-content' style='display: none'>
+              <div class='fCopy'>
+                <p>&copy; 2013 ЗАО «БАРС Груп»</p>
+              </div>
+              <div class='fSoc'>
+               <p>
+                <a rel='nofollow' target='_blank' class='icons soc1' href='https://twitter.com/barsgroup'>Twitter</a>
+                <a rel='nofollow' target='_blank' class='icons soc2' href='https://www.facebook.com/barsgroup'>Facebook</a>
+                <a rel='nofollow' target='_blank' class='icons soc3' href='http://vk.com/barsgroup_public'>Вконтакте</a>
+                <a rel='nofollow' target='_blank' class='icons soc4' href='http://www.linkedin.com/company/-bars-group-ltd'>LinkedIn</a>
+                <a rel='nofollow' target='_blank' class='icons soc5' href='http://www.youtube.com/user/barsgroup'>Youtube</a>
+              </p>
+            </div>",
           "{extjs_path}" => @opts.extjs_path,
           "{data_path}" => File.basename(@paths[:data]),
           "{css_path}" => File.basename(@paths[:css]),
@@ -93,7 +105,7 @@ module JsDuck
       def write_template(in_file, out_file, replacements)
         Logger.log("Writing", out_file)
         html = Util::IO.read(in_file)
-        html.gsub!(/\{\w+\}/) do |key|
+        html.gsub!(/\{\p{Word}+\}/) do |key|
           replacements[key] ? replacements[key] : key
         end
         File.open(out_file, 'w') {|f| f.write(html) }

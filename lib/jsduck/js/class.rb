@@ -85,7 +85,7 @@ module JsDuck
 
       # Class name begins with upcase char
       def class_name?(name)
-        return name.split(/\./).last =~ /\A[A-Z]/
+        return name.split(/\./).last =~ /\A[A-ZА-Я]/
       end
 
       # Detection of Ext.extend() or Ext.override().

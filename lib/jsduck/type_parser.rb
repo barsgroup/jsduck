@@ -211,7 +211,7 @@ module JsDuck
     def rtype_item
       skip_whitespace
 
-      key = @input.scan(/[a-zA-Z0-9_]+/)
+      key = @input.scan(/[\p{Word}]+/)
       return false unless key
       @out << key
 
@@ -325,7 +325,7 @@ module JsDuck
     #     <ident> ::= [a-zA-Z0-9_]+
     #
     def type_name
-      name = @input.scan(/[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*|\*/)
+      name = @input.scan(/[\p{Word}]+(\.[\p{Word}]+)*|\*/)
 
       if !name
         return false

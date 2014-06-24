@@ -95,7 +95,7 @@ Ext.define('Docs.view.cls.PackageLogic', {
     // Given full doc object for class creates class node
     classNode: function(cls) {
       return {
-        text: Docs.ClassRegistry.shortName(cls.name),
+        text: Docs.ClassRegistry.shortName(cls.display_name|| cls.name),
         url: "#!/api/"+cls.name,
         iconCls: cls.icon,
         cls: cls["private"] ? "private" : "",

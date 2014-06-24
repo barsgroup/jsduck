@@ -131,7 +131,7 @@ module JsDuck
           add_orphan(node)
         end
       elsif @current_class
-        node[:owner] = @current_class[:name]
+        node[:owner_display] = @current_class[:display_name]?@current_class[:display_name]:@current_class[:name]
         add_to_class(@current_class, node)
       else
         add_orphan(node)

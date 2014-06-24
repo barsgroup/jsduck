@@ -32,7 +32,7 @@ module JsDuck
         # prepend type name to member name
         member = member && get_matching_member(cls, {:name => member, :tagname => type, :static => static})
 
-        @tpl.gsub(/(%[\w#-])/) do
+        @tpl.gsub(/(%[\p{Word}#-])/) do
           case $1
           when '%c'
             cls

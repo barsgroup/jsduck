@@ -24,15 +24,15 @@ module JsDuck::Tag
         :tagname => :inheritdoc,
         :cls => p.ident_chain,
       }
-
-      if p.look(/#\w/)
+      
+      if p.look(/#\p{Word}/)
         p.match(/#/)
         if p.look(/static-/)
           tag[:static] = true
           p.match(/static-/)
         end
         if p.look(JsDuck::MemberRegistry.regex)
-          tag[:type] = p.match(/\w+/).to_sym
+          tag[:type] = p.match(/\p{Word}+/).to_sym
           p.match(/-/)
         end
         tag[:member] = p.ident

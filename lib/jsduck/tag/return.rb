@@ -20,7 +20,7 @@ module JsDuck::Tag
     end
 
     def subproperty_name(p)
-      if p.hw.look(/return\.\w/)
+      if p.hw.look(/return\.\p{Word}/)
         p.ident_chain
       else
         "return"

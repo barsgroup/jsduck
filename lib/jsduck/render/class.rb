@@ -105,6 +105,7 @@ module JsDuck
         first_child = is_first ? "first-child" : ""
         # shorthand to owner class
         owner = m[:owner]
+        owner_display = m[:owner_display]? m[:owner_display]: m[:owner]
         # is this method inherited from parent?
         inherited = (owner != @cls[:name])
 
@@ -117,8 +118,8 @@ module JsDuck
             # member name and type + link to owner class and source
             "<div class='title'>",
               "<div class='meta'>",
-                inherited ? "<a href='#!/api/#{owner}' rel='#{owner}' class='defined-in docClass'>#{owner}</a>" :
-                            "<span class='defined-in' rel='#{owner}'>#{owner}</span>",
+                inherited ? "<a href='#!/api/#{owner}' rel='#{owner}' class='defined-in docClass'>#{owner_display}</a>" :
+                            "<span class='defined-in' rel='#{owner}'>#{owner_display}</span>",
                 "<br/>",
                 @opts.source ? "<a href='source/#{m[:files][0][:href]}' target='_blank' class='view-source'>view source</a>" : "",
               "</div>",

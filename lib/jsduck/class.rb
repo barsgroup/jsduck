@@ -23,11 +23,22 @@ module JsDuck
       # differenciating between existing and missing classes.
       @doc[:name] = ClassNameString.new(@doc[:name], class_exists)
 
+      @doc[:display_name] =  @doc[:display_name] ? @doc[:display_name]: @doc[:name] + type_params(@doc[:typeparams])
+
       @doc[:members] = [] if !@doc[:members]
 
       @members_index = MembersIndex.new(self)
 
       @relations = nil
+    end
+
+     # !WARNING DUPLICATE CODE
+    def type_params(typeparams)
+      ps = Array(typeparams).map do |p|
+        p[:name]
+      end.join(", ")
+
+      ps.length > 0? " <span class='pre'>&lt;#{ps}&gt;</span> ":""
     end
 
     # Returns the internal doc object.
@@ -79,6 +90,11 @@ module JsDuck
     def superclasses
       p = parent
       p ? p.superclasses + [p]  : []
+    end
+
+    # Returns all direct implements of this class. Same as #deps(:implements).
+    def implements
+      deps(:implements)
     end
 
     # Returns all direct mixins of this class. Same as #deps(:mixins).

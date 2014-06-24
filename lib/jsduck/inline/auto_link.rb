@@ -50,7 +50,7 @@ module JsDuck
 
       # Generates regex for auto-linking class and member names in text.
       def magic_link_re
-        ident_re = "(?:[A-Za-z_$][A-Za-z0-9_$]*)"
+        ident_re = "(?:[A-ZА-Яa-zа-я_$][A-ZА-Яa-zа-я0-9_$]*)"
         cls_re = "(#{ident_re}(?:\\.#{ident_re})*)"
         ns_cls_re = "(#{ident_re}(?:\\.#{ident_re})+)"
         member_re = "(?:#(#{ident_re}))"

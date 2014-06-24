@@ -175,7 +175,9 @@ Ext.define('Docs.view.Tabs', {
      * @param {Boolean} opts.activate True to activate the tab
      */
     addTab: function(tab, opts) {
-        tab = this.formatTabTexts(tab);
+        if(tab.iconCls != "icon-class"){
+            tab = this.formatTabTexts(tab);
+        }
 
         this.tabCache[tab.href] = tab;
 

@@ -15,8 +15,9 @@ module JsDuck
       # (reflecting the number of new members).
       def render(name)
         cls = @relations[name]
+        display_name = cls[:display_name]? cls[:display_name]: name
         if cls
-          @doc_formatter.link(name, nil, name) + render_new_label(cls)
+          @doc_formatter.link(name, nil, Util::HTML.unescape(display_name)) + render_new_label(cls)
         else
           name
         end

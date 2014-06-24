@@ -48,7 +48,7 @@ module JsDuck
 
       def compact_member(m)
         m_copy = {}
-        [:name, :tagname, :owner, :id].each do |key|
+        [:name, :display_name, :tagname, :owner, :owner_display, :id].each do |key|
           m_copy[key] = m[key]
         end
         m_copy[:meta] = combine_meta(m)

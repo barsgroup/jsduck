@@ -21,13 +21,13 @@ module JsDuck
 
       # Scans an opening tag in HTML using the passed in StringScanner.
       def open(s)
-        s.scan(/</) + push_tag(s.scan(/\w+/)) + s.scan_until(/>|\Z/)
+        s.scan(/</) + push_tag(s.scan(/\p{Word}+/)) + s.scan_until(/>|\Z/)
       end
 
       # Scans a closing tag in HTML using the passed in StringScanner.
       def close(s)
         s.scan(/<\//)
-        tag = s.scan(/\w+/)
+        tag = s.scan(/\p{Word}+/)
         s.scan(/>/)
 
         pop_tags(tag).map {|t| "</#{t}>" }.join

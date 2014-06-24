@@ -29,6 +29,10 @@ module JsDuck::Tag
       p.hw.match(/\(optional\)/i)
     end
 
+    def parse_display_name(p)
+
+    end
+
     def process_doc(h, tags, pos)
       h[:params] = JsDuck::Doc::Subproperties.nest(tags, pos)
       h[:params] = nil if h[:params].length == 0

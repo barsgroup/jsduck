@@ -20,7 +20,7 @@ module JsDuck::Tag
     end
 
     def aside_type(p)
-      p.look(/\w+/) ? p.ident.to_sym : nil
+      p.look(/\p{Word}+/) ? p.ident.to_sym : nil
     end
 
     def process_doc(h, tags, pos)

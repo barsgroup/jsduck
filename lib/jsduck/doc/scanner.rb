@@ -13,8 +13,8 @@ module JsDuck
     #
     class Scanner
       def initialize
-        @ident_pattern = /[$\w-]+/
-        @ident_chain_pattern = /[$\w-]+(\.[$\w-]+)*/
+        @ident_pattern = /[$\p{Word}-]+/
+        @ident_chain_pattern = /[$\p{Word}-]+(\.[$\p{Word}-]+)*/
 
         @input = nil # set to StringScanner in subclass
         @position = {} # set in subclass
@@ -37,6 +37,10 @@ module JsDuck
       # matches chained.identifier.name and returns it
       def ident_chain
         @input.scan(@ident_chain_pattern)
+      end
+      
+      def ident_chain_generic(pattern)
+        @input.scan(pattern)
       end
 
       # matches identifier and returns its name

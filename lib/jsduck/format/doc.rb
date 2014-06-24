@@ -121,10 +121,10 @@ module JsDuck
             tags.push_tag("pre")
             tags.push_tag("code")
             out += substitute
-          elsif s.check(/<\w/)
+          elsif s.check(/<\p{Word}/)
             # Open HTML tag
             out += tags.open(s)
-          elsif s.check(/<\/\w+>/)
+          elsif s.check(/<\/\p{Word}+>/)
             # Close HTML tag
             out += tags.close(s)
           elsif s.check(/</)

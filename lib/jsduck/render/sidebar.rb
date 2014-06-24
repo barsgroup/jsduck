@@ -1,3 +1,5 @@
+require 'jsduck/util/html'
+
 module JsDuck
   module Render
 
@@ -16,6 +18,7 @@ module JsDuck
           render_tree(cls),
           render_dependencies(cls[:mixins], "Mixins"),
           render_dependencies(cls[:parentMixins], "Inherited mixins"),
+          render_implements(cls[:implements], "Implements"),
           render_dependencies(cls[:requires], "Requires"),
           render_dependencies(cls[:subclasses], "Subclasses"),
           render_dependencies(cls[:mixedInto], "Mixed into"),
@@ -45,8 +48,17 @@ module JsDuck
         return if !names || names.length == 0
 
         return [
-          "<h4>#{title}</h4>",
-          names.map {|name| "<div class='dependency'>#{name.exists? ? render_link(name) : name}</div>" },
+            "<h4>#{title}</h4>",
+            names.map {|name| "<div class='dependency'>#{name.exists? ? render_link(name) : name}</div>" },
+        ]
+      end
+
+      def render_implements(names, title)
+        return if !names || names.length == 0
+
+        return [
+            "<h4>#{title}</h4>",
+            names.map {|name| "<div class='dependency'>#{Util::HTML.escape(name)}</div>" },
         ]
       end
 
@@ -71,7 +83,7 @@ module JsDuck
 
         return [
           "<h4>Hierarchy</h4>",
-          render_class_tree(cls[:superclasses] + [cls[:name]])
+          render_class_tree(cls[:superclasses] + [cls[:display_name]?cls[:display_name]:cls[:name]])
         ]
       end
 

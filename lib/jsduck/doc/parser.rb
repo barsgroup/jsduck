@@ -78,12 +78,12 @@ module JsDuck
       #
       def parse_at_tag
         match(/@/)
-        name = look(/\w+/)
+        name = look(/\p{Word}+/)
 
         if !name
           # ignore
         elsif tag = TagRegistry.get_by_pattern(name)
-          match(/\w+/)
+          match(/\p{Word}+/)
           hw # Skip the whitespace right after the tag.
 
           tags = tag.parse_doc(self, @position)

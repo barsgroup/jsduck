@@ -60,9 +60,11 @@ module JsDuck
       end
 
       def class_node(cls)
+        display_name = cls[:display_name] ? cls[:display_name] : cls[:name]
         return {
           :name => ClassName.short(cls[:name]),
-          :fullName => cls[:name],
+          :display_name => ClassName.short(display_name),
+          :fullName => display_name,
           :icon => Web::ClassIcons.get(cls),
           :url => "#!/api/" + cls[:name],
           :meta => combine_meta(cls),
@@ -83,9 +85,12 @@ module JsDuck
       end
 
       def member_node(member, cls)
+        display_name = member[:display_name]? member[:display_name] : member[:name]
+        cls_display_name = cls[:display_name] ? cls[:display_name] : cls[:name]
         return {
           :name => member[:name],
-          :fullName => cls[:name] + "." + member[:name],
+          :display_name => display_name,
+          :fullName => cls_display_name + "." + display_name,
           :icon => "icon-" + member[:tagname].to_s,
           :url => "#!/api/" + cls[:name] + "-" + member[:id],
           :meta => combine_meta(member),
